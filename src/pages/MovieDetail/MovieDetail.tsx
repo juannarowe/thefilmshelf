@@ -2,11 +2,16 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getMovieDetail, getImageUrl } from '../../services/tmdb'
 import type { MovieDetail as MovieDetailType } from '../../types'
+import { useFavourites } from '../../context/FavouritesContext'
+import { useAuth } from '../../context/AuthContext'
 import styles from './MovieDetail.module.css'
 
 export default function MovieDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+
+  const { user } = useAuth()
+  const { isFavourite, addFavourite, removeFavourite } = useFavourites()
 
   const [movie, setMovie] = useState<MovieDetailType | null>(null)
   const [loading, setLoading] = useState(true)
@@ -55,6 +60,19 @@ export default function MovieDetail() {
   const year = movie.release_date?.split('-')[0] ?? '—'
   const hours = Math.floor(movie.runtime / 60)
   const mins = movie.runtime % 60
+  const saved = isFavourite(movie.id)
+
+  function handleFavouriteToggle() {
+    if (!user) {
+      navigate('/login')
+      return
+    }
+    if (saved) {
+      removeFavourite(movie!.id)
+    } else {
+      addFavourite(movie!)
+    }
+  }
 
   return (
     <main className={styles.page}>
@@ -95,6 +113,13 @@ export default function MovieDetail() {
           )}
 
           <p className={styles.overview}>{movie.overview}</p>
+
+          <button
+            className={saved ? styles.favActive : styles.fav}
+            onClick={handleFavouriteToggle}
+          >
+            {saved ? '★ Remove from favourites' : '☆ Add to favourites'}
+          </button>
         </div>
       </div>
 
@@ -135,7 +160,6 @@ export default function MovieDetail() {
         </section>
       )}
 
-      {/* Recommended films grid — reuses MovieCard with similar movies */}
       <section className={styles.section}>
         <button className={styles.back} onClick={() => navigate(-1)}>
           ← Go back

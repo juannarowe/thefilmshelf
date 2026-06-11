@@ -137,6 +137,40 @@
   border-radius: 8px;
 }
 
+.fav {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: none;
+  border: 1px solid #e2b714;
+  color: #e2b714;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.fav:hover {
+  background: #e2b714;
+  color: #0d0d1a;
+}
+
+.favActive {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #e2b714;
+  border: 1px solid #e2b714;
+  color: #0d0d1a;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+
+.favActive:hover {
+  opacity: 0.8;
+}
+
 .back {
   background: none;
   border: 1px solid #2a2a4a;

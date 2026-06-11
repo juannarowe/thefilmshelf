@@ -6,6 +6,8 @@ import Explore from './pages/Explore/Explore'
 import MovieDetail from './pages/MovieDetail/MovieDetail'
 import PersonDetail from './pages/PersonDetail/PersonDetail'
 import Login from './pages/Login/Login'
+import Favourites from './pages/Favourites/Favourites'
+import Profile from './pages/Profile/Profile'
 
 export default function App() {
   return (
@@ -21,8 +23,8 @@ export default function App() {
 
         {/* Protected routes (require sign-in) */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/favourites" element={<div>Favourites — coming in Epic 4</div>} />
-          <Route path="/profile" element={<div>Profile — coming in Epic 4</div>} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
