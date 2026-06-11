@@ -11,6 +11,88 @@ A film discovery and personal collection web app built with React, TypeScript, a
 - **Favourites** — personal collection with 1–10 rating, stored in Firestore
 - **Authentication** — email/password sign-in and registration via Firebase Auth
 
+---
+
+## User flow
+
+```mermaid
+flowchart TD
+    A([Open app]) --> B[Home\nTrending films]
+
+    B --> C[Explore\nSearch · Genre filter]
+    B --> D[Movie Detail\nPoster · Cast · Trailer]
+    C --> D
+    D --> E[Person Detail\nBio · Filmography]
+    E --> D
+
+    D --> F{Add to favourites?}
+    F -- Not signed in --> G[Login page]
+    G --> H{New user?}
+    H -- Yes --> I[Register form]
+    H -- No  --> J[Sign-in form]
+    I --> B
+    J --> B
+
+    F -- Signed in --> K[Favourite saved ✓]
+    K --> L[Favourites page\nRating slider · Remove]
+
+    B --> M[Profile page\nEmail · Count · Sign out]
+    M --> N([Signed out])
+    N --> B
+```
+
+---
+
+## Architecture
+
+```mermaid
+graph TB
+    subgraph UI ["UI Layer (React)"]
+        direction TB
+        subgraph Pages
+            PH[Home]
+            PE[Explore]
+            PMD[MovieDetail]
+            PPD[PersonDetail]
+            PL[Login]
+            PF[Favourites]
+            PP[Profile]
+        end
+        subgraph Components
+            CN[Navbar]
+            CMC[MovieCard]
+            CPR[ProtectedRoute]
+        end
+    end
+
+    subgraph State ["State Layer (React Context)"]
+        AC[AuthContext\nuser · login · register · logout]
+        FC[FavouritesContext\nfavourites · add · remove · rate]
+    end
+
+    subgraph Services ["Service Layer"]
+        ST[tmdb.ts\ngetTrending · search · getMovieDetail · getPersonDetail]
+        SF[firebase.ts\nauth · db]
+    end
+
+    subgraph External ["External APIs"]
+        TMDB[(TMDB API\nfilm data)]
+        FBA[(Firebase Auth\nemail + password)]
+        FST[(Cloud Firestore\nfavourites + ratings)]
+    end
+
+    Pages --> State
+    Pages --> Components
+    Pages --> ST
+    AC --> SF
+    FC --> SF
+    SF --> FBA
+    SF --> FST
+    ST --> TMDB
+```
+
+---
+
 ## Tech stack
 
 | Layer | Technology |
@@ -22,6 +104,7 @@ A film discovery and personal collection web app built with React, TypeScript, a
 | Database | Cloud Firestore |
 | Film data | TMDB API v3 |
 | Build | Vite |
+| Tests | Vitest + React Testing Library |
 
 ## Getting started
 
@@ -67,6 +150,12 @@ npm run dev
 npm run build
 ```
 
+### 5. Run tests
+
+```bash
+npm test
+```
+
 ## Project structure
 
 ```
@@ -89,6 +178,12 @@ src/
 ├── services/
 │   ├── firebase.ts       # Firebase initialisation
 │   └── tmdb.ts           # TMDB API functions
+├── tests/
+│   ├── setup.ts          # Testing Library setup
+│   ├── getImageUrl.test.ts
+│   ├── MovieCard.test.tsx
+│   ├── Navbar.test.tsx
+│   └── Login.test.tsx
 └── types/
     └── index.ts          # TypeScript interfaces
 ```
@@ -100,10 +195,11 @@ This project follows a feature-branch workflow:
 ```
 main
  └── develop
-      ├── feat/epic-1-explore   → PR #1
-      ├── feat/epic-2-detail    → PR #2
-      ├── feat/epic-3-auth      → PR #3
-      └── feat/epic-4-favourites → PR #4
+      ├── feat/epic-1-explore    → PR #1
+      ├── feat/epic-2-detail     → PR #2
+      ├── feat/epic-3-auth       → PR #3
+      ├── feat/epic-4-favourites → PR #4
+      └── testing                → PR #6
 ```
 
 Each epic was developed on its own branch, reviewed via pull request, and merged into `develop`. A final PR merges `develop` into `main`.
