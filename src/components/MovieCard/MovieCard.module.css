@@ -1,0 +1,40 @@
+.card {
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a2e;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.04);
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  padding: 8px;
+}
+
+.title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 2px;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.year {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin: 0;
+}
