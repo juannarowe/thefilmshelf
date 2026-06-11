@@ -1,0 +1,85 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  padding: 24px;
+}
+
+.card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input {
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #2a2a4a;
+  background: #0d0d1a;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #e2b714;
+}
+
+.error {
+  color: #f66;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
+}
+
+.submit {
+  padding: 12px;
+  background: #e2b714;
+  color: #0d0d1a;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggle {
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.toggle:hover {
+  color: #fff;
+}

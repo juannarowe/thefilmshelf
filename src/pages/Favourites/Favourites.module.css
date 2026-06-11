@@ -1,0 +1,90 @@
+.page {
+  padding: 32px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.empty {
+  color: #aaa;
+  text-align: center;
+  padding: 48px 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.poster {
+  width: 60px;
+  border-radius: 4px;
+  object-fit: cover;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 0 8px;
+}
+
+.title:hover {
+  color: #e2b714;
+}
+
+.ratingRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ratingLabel {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.slider {
+  width: 160px;
+  accent-color: #e2b714;
+}
+
+.remove {
+  background: none;
+  border: 1px solid #f66;
+  color: #f66;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.remove:hover {
+  background: #f66;
+  color: #fff;
+}

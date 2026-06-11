@@ -1,0 +1,63 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 40px 32px;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e2b714;
+  color: #0d0d1a;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.name {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.email {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.count {
+  color: #e2b714;
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+.logout {
+  padding: 10px 24px;
+  background: none;
+  border: 1px solid #f66;
+  color: #f66;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout:hover {
+  background: #f66;
+  color: #fff;
+}
